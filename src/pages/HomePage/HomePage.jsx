@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import useFetchTrendingMovies from 'hooks/useFetchTrendingMovies';
-import Loader from '../components/Loader/Loader';
+import Loader from '../../components/Loader/Loader';
+import { Link } from 'react-router-dom';
 
 
 const HomePage = () => {
-
     const { movies, error, isLoadingMovies, fetchTrendingMovies } = useFetchTrendingMovies([]);
 
     useEffect(() => {
@@ -12,14 +12,11 @@ const HomePage = () => {
         // eslint-disable-next-line
     }, []);
 
-
     return (
         <div>
             <h1>Trending today</h1>
             {error.length > 0 && (
-                <p>
-                    Upss, Some error occured... {error}
-                </p>
+                <p>Upss, Some error occured... {error}</p>
             )}
             {isLoadingMovies && <Loader />}
             <ul>
@@ -27,12 +24,12 @@ const HomePage = () => {
                     movies.map(movie => {
                         return (
                             <li key={movie.id}>
-                                <p>{movie.title}</p>
+                                <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
                             </li>
                         );
                     })}
             </ul>
-        </div>
+        </div >
     )
 }
 

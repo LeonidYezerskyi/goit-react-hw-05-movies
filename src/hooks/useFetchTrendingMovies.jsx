@@ -10,9 +10,9 @@ function useFetchTrendingMovies(INITIAL_DATA = null) {
         try {
             setIsLoading(true);
 
-            const movies = await getTrendingMovies();
+            const { results } = await getTrendingMovies();
+            setMovies(results);
 
-            setMovies(movies);
         } catch (err) {
             setError(err.message);
         } finally {

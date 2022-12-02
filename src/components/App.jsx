@@ -1,15 +1,16 @@
 import React from 'react';
-import HomePage from '../pages/HomePage';
-import MoviesPage from '../pages/MoviesPage';
+import HomePage from '../pages/HomePage/HomePage';
+import MoviesPage from '../pages/MoviesPage/MoviesPage';
 import css from './App.module.css';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import cn from 'classnames';
+import MovieDetails from 'pages/MovieDetails/MovieDetails';
 
 export const App = () => {
   return (
     <div>
       <nav className={css.header}>
-        <NavLink to='/home' className={({ isActive }) =>
+        <NavLink to='/' className={({ isActive }) =>
           cn(css.tabPage, { [css.active]: isActive, })}>
           Home
         </NavLink>
@@ -21,8 +22,9 @@ export const App = () => {
 
       <>
         <Routes >
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies/*" element={<MoviesPage />} />
+          <Route path="/movies/:movieId/*" element={<MovieDetails />} />
         </Routes>
       </>
     </div >
