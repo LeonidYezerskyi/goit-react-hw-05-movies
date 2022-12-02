@@ -1,7 +1,7 @@
 import Loader from 'components/Loader/Loader';
 import SearchForm from 'components/SearchForm/SearchForm';
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { getSearchMovie } from 'services/api';
 
 const MoviesPage = () => {
@@ -9,9 +9,12 @@ const MoviesPage = () => {
     const [movies, setMovies] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+
+    const location = useLocation();
     const [searchParams] = useSearchParams();
     const movieName = searchParams.get("query") ?? "";
     movieName && !name && setName(movieName)
+
     useEffect(() => {
         if (!name) return;
 
@@ -49,7 +52,7 @@ const MoviesPage = () => {
                     movies.map(movie => {
                         return (
                             <li key={movie.id}>
-                                <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
+                                <Link to={`/movies/${movie.id}`} state={{ from: location }}><h2>{movie.title}</h2></Link>
                             </li>
                         );
                     })}

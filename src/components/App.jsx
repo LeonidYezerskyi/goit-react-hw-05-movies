@@ -5,6 +5,7 @@ import css from './App.module.css';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import cn from 'classnames';
 import MovieDetails from 'pages/MovieDetails/MovieDetails';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 export const App = () => {
   return (
@@ -25,6 +26,7 @@ export const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/movies/*" element={<MoviesPage />} />
           <Route path="/movies/:movieId/*" element={<MovieDetails />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </>
     </div >

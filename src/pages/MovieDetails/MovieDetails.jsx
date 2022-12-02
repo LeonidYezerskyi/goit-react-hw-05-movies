@@ -52,6 +52,7 @@ const MovieDetails = () => {
             )}
             {movieData && (
                 <section>
+                    <button onClick={handleGoBack}>Go back</button>
                     <img src={movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : ''} width='300' alt="movie moment" />
                     <h2>{movieData.title}</h2>
                     <p>{movieData.vote_average}</p>
@@ -63,10 +64,9 @@ const MovieDetails = () => {
                     })}</span>
                     <div>
                         <h5>Additional information</h5>
-                        <button onClick={handleGoBack}>Go back</button>
                         <div>
-                            <Link to='cast'><p>Cast</p></Link>
-                            <Link to='reviews'><p>Reviews</p></Link>
+                            <Link to='cast' state={{ from: location }}><p>Cast</p></Link>
+                            <Link to='reviews' state={{ from: location }}><p>Reviews</p></Link>
                         </div>
                     </div>
                     <Routes>
