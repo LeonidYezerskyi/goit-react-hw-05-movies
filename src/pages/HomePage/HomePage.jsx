@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import useFetchTrendingMovies from 'hooks/useFetchTrendingMovies';
 import Loader from '../../components/Loader/Loader';
 import { Link } from 'react-router-dom';
+import css from './HomePage.module.css'
 
 
 const HomePage = () => {
@@ -13,7 +14,7 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div>
+        <div className={css.moviesList}>
             <h1>Trending today</h1>
             {error.length > 0 && (
                 <p>Upss, Some error occured... {error}</p>
@@ -24,7 +25,7 @@ const HomePage = () => {
                     movies.map(movie => {
                         return (
                             <li key={movie.id}>
-                                <Link to={`/movies/${movie.id}`}><h2>{movie.title}</h2></Link>
+                                <Link to={`/movies/${movie.id}`}><h2 className={css.titleMovie}>{movie.title}</h2></Link>
                             </li>
                         );
                     })}

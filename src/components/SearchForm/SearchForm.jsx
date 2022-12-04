@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import css from './SearchForm.module.css';
 
 
 const SearchForm = ({ onSelectName = () => { } }) => {
@@ -27,9 +28,10 @@ const SearchForm = ({ onSelectName = () => { } }) => {
     };
 
     return (
-        <div>
+        <div className={css.formSection}>
             <form onSubmit={onSubmit}>
                 <input
+                    className={css.input}
                     type="text"
                     name="name"
                     value={name}
@@ -37,7 +39,7 @@ const SearchForm = ({ onSelectName = () => { } }) => {
                     onChange={onChange}
                     required
                 />
-                <button type="submit">Search</button>
+                <button className={css.button} type="submit">Search</button>
             </form>
         </div>
     )

@@ -1,9 +1,11 @@
 import Loader from 'components/Loader/Loader';
 import CastPage from 'pages/Cast/CastPage';
 import ReviewsPage from 'pages/Reviews/Reviews';
+import css from './MovieDetails.module.css';
 import React, { useState, useEffect } from 'react';
 import { Link, Route, Routes, useParams, useLocation, useNavigate } from 'react-router-dom';
 import { getMovieDetails } from 'services/api';
+import arrow from '../../images/arrow.svg';
 
 const MovieDetails = () => {
     const { movieId } = useParams();
@@ -45,26 +47,34 @@ const MovieDetails = () => {
     }
 
     return (
-        <div>
+        <div className={css.movieInfo}>
             {isLoading && <Loader />}
             {error.length > 0 && (
                 <p>Upss, Some error occured... {error}</p>
             )}
             {movieData && (
                 <section>
-                    <button onClick={handleGoBack}>Go back</button>
-                    <img src={movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : ''} width='300' alt="movie moment" />
-                    <h2>{movieData.title}</h2>
-                    <p>{movieData.vote_average}</p>
-                    <h3>Overview</h3>
-                    <span>{movieData.overview}</span>
-                    <h4>Genres</h4>
-                    <span>{movieData?.genres && movieData.genres.map(({ id, name }) => {
-                        return <li key={id}>{name}</li>;
-                    })}</span>
-                    <div>
-                        <h5>Additional information</h5>
+                    <button className={css.button} onClick={handleGoBack}>
+                        <img src={arrow} alt="arrow" width="15" />
+                        Go back</button>
+                    <div className={css.description}>
+                        <img src={movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : ''} width='300' alt="movie moment" />
                         <div>
+                            <h2 className={css.titleMovie}>{movieData.title}</h2>
+                            <p className={css.scoreInfo}>User score: <span className={css.scoreNumber}>{parseInt(movieData.vote_average) * 10}%</span></p>
+                            <h3>Overview</h3>
+                            <span className={css.overviewText}>{movieData.overview}</span>
+                            <h4>Genres</h4>
+                            <span className={css.genresList}>{movieData?.genres && movieData.genres.map(({ id, name }) => {
+                                return <li key={id}>{name}</li>;
+                            })}</span>
+                        </div>
+
+                    </div>
+
+                    <div className={css.addInfo}>
+                        <h5 className={css.addTitle}>Additional information</h5>
+                        <div className={css.addLinks}>
                             <Link to='cast' state={{ from: location }}><p>Cast</p></Link>
                             <Link to='reviews' state={{ from: location }}><p>Reviews</p></Link>
                         </div>
