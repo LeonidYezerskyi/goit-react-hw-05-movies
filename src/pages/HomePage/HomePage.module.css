@@ -6,3 +6,9 @@ padding-left: 30px;
     font-size: 20px;
     font-weight: bold;
 }
+
+.notification {
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}

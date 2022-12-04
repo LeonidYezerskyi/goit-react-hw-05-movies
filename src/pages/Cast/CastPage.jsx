@@ -33,11 +33,6 @@ const CastPage = () => {
         // eslint-disable-next-line
     }, [movieId]);
 
-    useEffect(() => {
-        console.log(movieCredits);
-    }, [movieCredits])
-
-
     return (
         <section className={css.castSection}>
             {error.length > 0 && (
@@ -47,7 +42,7 @@ const CastPage = () => {
             {movieCredits && movieCredits.map(cast => {
                 return (
                     <li key={cast.id}>
-                        <img src={cast.profile_path ? `https://image.tmdb.org/t/p/w500${cast.profile_path}` : ''} alt="actor" width="150" />
+                        <img src={cast.profile_path ? `https://image.tmdb.org/t/p/w500${cast.profile_path}` : ""} alt="actor" width="150" />
                         <p className={css.castName}>{cast.original_name} </p>
                         <p><b>Character:</b> {cast.character}</p>
                     </li>

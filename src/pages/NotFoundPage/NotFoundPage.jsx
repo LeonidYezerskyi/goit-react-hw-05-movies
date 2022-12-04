@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import css from './notFound.module.css';
 
 const NotFoundPage = () => {
     return (
-        <div>NotFoundPage</div>
+        <div className={css.notification}>Not Found Page</div>
     )
 }
 
-export default NotFoundPage
+export default NotFoundPage;

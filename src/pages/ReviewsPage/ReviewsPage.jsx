@@ -2,6 +2,7 @@ import Loader from 'components/Loader/Loader';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'services/api';
+import css from './Reviews.module.css';
 
 
 
@@ -30,11 +31,6 @@ const ReviewsPage = () => {
         // eslint-disable-next-line
     }, [movieId]);
 
-    useEffect(() => {
-        console.log(movieReviews);
-    }, [movieReviews])
-
-
     return (
         <section>
             {error.length > 0 && (
@@ -43,13 +39,13 @@ const ReviewsPage = () => {
             {isLoading && <Loader />}
             {movieReviews.length ? movieReviews.map(review => {
                 return (
-                    <li key={review.id}>
-                        <p>Author: {review.author} </p>
+                    <li className={css.reviewItem} key={review.id}>
+                        <p className={css.authorName}>Author: {review.author} </p>
                         <p>{review.content}</p>
                     </li>
                 )
             }
-            ) : (<p>We dont have any reviews for this movie</p>)}
+            ) : (<p className={css.notification}>We dont have any reviews for this movie</p>)}
         </section>
     )
 }

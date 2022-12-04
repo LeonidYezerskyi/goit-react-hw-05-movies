@@ -3,6 +3,7 @@ import SearchForm from 'components/SearchForm/SearchForm';
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { getSearchMovie } from 'services/api';
+import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
     const [name, setName] = useState('');
@@ -40,7 +41,7 @@ const MoviesPage = () => {
     };
 
     return (
-        <div>
+        <div className={css.moviesList}>
             <SearchForm onSelectName={onSelectName} />
 
             {error.length > 0 && (
@@ -52,7 +53,7 @@ const MoviesPage = () => {
                     movies.map(movie => {
                         return (
                             <li key={movie.id}>
-                                <Link to={`/movies/${movie.id}`} state={{ from: location }}><h2>{movie.title}</h2></Link>
+                                <Link to={`/movies/${movie.id}`} state={{ from: location }}><h2 className={css.titleMovie}>{movie.title}</h2></Link>
                             </li>
                         );
                     })}

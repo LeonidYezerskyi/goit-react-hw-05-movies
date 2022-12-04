@@ -17,7 +17,7 @@ const HomePage = () => {
         <div className={css.moviesList}>
             <h1>Trending today</h1>
             {error.length > 0 && (
-                <p>Upss, Some error occured... {error}</p>
+                <p className={css.notification}>Upss, Some error occured... {error}</p>
             )}
             {isLoadingMovies && <Loader />}
             <ul>

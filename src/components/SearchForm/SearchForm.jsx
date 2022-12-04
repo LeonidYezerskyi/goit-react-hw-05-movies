@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
 import { useSearchParams } from 'react-router-dom';
+
 import css from './SearchForm.module.css';
 
 
@@ -11,7 +13,7 @@ const SearchForm = ({ onSelectName = () => { } }) => {
 
 
     const onChange = e => {
-        const searchName = e.target.value;
+        const searchName = e.target.value.trim();
         setName(searchName);
     };
 
@@ -43,6 +45,10 @@ const SearchForm = ({ onSelectName = () => { } }) => {
             </form>
         </div>
     )
+}
+
+SearchForm.propTypes = {
+    onSelectName: PropTypes.func.isRequired
 }
 
 export default SearchForm;

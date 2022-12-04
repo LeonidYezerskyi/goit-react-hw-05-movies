@@ -1,9 +1,7 @@
-import Loader from 'components/Loader/Loader';
-import CastPage from 'pages/Cast/CastPage';
-import ReviewsPage from 'pages/Reviews/Reviews';
-import css from './MovieDetails.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Link, Route, Routes, useParams, useLocation, useNavigate } from 'react-router-dom';
+import Loader from 'components/Loader/Loader';
+import css from './MovieDetails.module.css';
 import { getMovieDetails } from 'services/api';
 import arrow from '../../images/arrow.svg';
 
@@ -34,10 +32,6 @@ const MovieDetails = () => {
         // eslint-disable-next-line
     }, [movieId]);
 
-    useEffect(() => {
-        console.log(movieData);
-    }, [movieData])
-
     const handleGoBack = () => {
         if (location.state) {
             navigate(location.state.from);
@@ -45,6 +39,10 @@ const MovieDetails = () => {
         }
         navigate('/');
     }
+
+    const LazyCastPage = lazy(() => import("../Cast/CastPage"));
+    const LazyReviewsPage = lazy(() => import("../ReviewsPage/ReviewsPage"));
+
 
     return (
         <div className={css.movieInfo}>
@@ -61,7 +59,7 @@ const MovieDetails = () => {
                         <img src={movieData.poster_path ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}` : ''} width='300' alt="movie moment" />
                         <div>
                             <h2 className={css.titleMovie}>{movieData.title}</h2>
-                            <p className={css.scoreInfo}>User score: <span className={css.scoreNumber}>{parseInt(movieData.vote_average) * 10}%</span></p>
+                            <p className={css.scoreInfo}>User score: <span className={css.scoreNumber}>{parseInt(movieData.vote_average * 10)}%</span></p>
                             <h3>Overview</h3>
                             <span className={css.overviewText}>{movieData.overview}</span>
                             <h4>Genres</h4>
@@ -79,10 +77,14 @@ const MovieDetails = () => {
                             <Link to='reviews' state={{ from: location }}><p>Reviews</p></Link>
                         </div>
                     </div>
-                    <Routes>
-                        <Route path='cast' element={<CastPage movieId={movieId} />} />
-                        <Route path='reviews' element={<ReviewsPage movieId={movieId} />} />
-                    </Routes>
+
+                    <Suspense>
+                        <Routes>
+                            <Route path='cast' element={<LazyCastPage />} />
+                            <Route path='reviews' element={<LazyReviewsPage />} />
+                        </Routes>
+                    </Suspense>
+
                 </section>)}
         </div>
     )
