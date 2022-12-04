@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/106.5bd4943d.chunk.css","mappings":"AAAA,yBAEI,eAAgB,CADhB,YAEJ,CAMA,kDACI,eACJ","sources":["pages/Cast/Cast.module.css"],"sourcesContent":[".castSection {\n    padding: 30px 30px;\n    list-style: none;\n}\n\n.characterTitle {\n    font-weight: 700;\n}\n\n.castName {\n    font-weight: 700;\n}"],"names":[],"sourceRoot":""}
