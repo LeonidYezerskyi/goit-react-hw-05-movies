@@ -50,18 +50,15 @@
     list-style: none;
 }
 
-.addInfo {
-    padding-left: 10px;
-}
-
 .addTitle {
+padding-left: 10px;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 0;
 }
 
 .addLinks {
-    padding-left: 20px;
+    padding-left: 30px;
     font-size: 16px;
     font-weight: 700;
     border-bottom: 1px solid rgb(0, 0, 0);
