@@ -7,10 +7,8 @@ import css from './SearchForm.module.css';
 
 const SearchForm = ({ onSelectName = () => { } }) => {
     const [name, setName] = useState('');
+    // eslint-disable-next-line 
     const [searchParams, setSearchParams] = useSearchParams();
-    const movieName = searchParams.get("query") ?? "";
-    console.log(movieName)
-
 
     const onChange = e => {
         const searchName = e.target.value.trim();

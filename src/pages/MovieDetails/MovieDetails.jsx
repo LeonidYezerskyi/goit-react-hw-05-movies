@@ -48,7 +48,7 @@ const MovieDetails = () => {
         <div className={css.movieInfo}>
             {isLoading && <Loader />}
             {error.length > 0 && (
-                <p>Upss, Some error occured... {error}</p>
+                <p className={css.errorText}>Upss, Some error occured... {error}</p>
             )}
             {movieData && (
                 <section>
