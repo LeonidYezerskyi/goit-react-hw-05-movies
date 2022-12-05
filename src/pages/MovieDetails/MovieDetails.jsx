@@ -73,8 +73,8 @@ const MovieDetails = () => {
                     <div className={css.addInfo}>
                         <h5 className={css.addTitle}>Additional information</h5>
                         <div className={css.addLinks}>
-                            <Link to='cast' state={{ from: location }}><p>Cast</p></Link>
-                            <Link to='reviews' state={{ from: location }}><p>Reviews</p></Link>
+                            <Link to='cast' state={{ from: location.state?.from }}><p>Cast</p></Link>
+                            <Link to='reviews' state={{ from: location.state?.from }}><p>Reviews</p></Link>
                         </div>
                     </div>
 
